@@ -12,7 +12,7 @@ public class GraphTextProcessor {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
-        String filePath ="Easy Test.txt";
+        String filePath ="Cursed Be The Treasure.txt";
         parseTextFile(filePath);
 
         while (true) {
@@ -132,18 +132,15 @@ public class GraphTextProcessor {
         if (!graph.containsKey(word1) || !graph.containsKey(word2)) {
             return "No \"" + word1 + "\" or \"" + word2 + "\" in the graph!";
         }
-
         Set<String> bridgeWords = new HashSet<>();
         for (String intermediate : graph.get(word1).keySet()) {
             if (graph.containsKey(intermediate) && graph.get(intermediate).containsKey(word2)) {
                 bridgeWords.add(intermediate);
             }
         }
-
         if (bridgeWords.isEmpty()) {
             return "No bridge words from \"" + word1 + "\" to \"" + word2 + "\"!";
         }
-
         List<String> bridgeList = new ArrayList<>(bridgeWords);
         if (bridgeList.size() == 1) {
             return "The bridge word from \"" + word1 + "\" to \"" + word2 + "\" is: " + bridgeList.get(0) + ".";
